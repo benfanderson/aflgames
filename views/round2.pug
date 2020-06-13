@@ -1,0 +1,16 @@
+extends layout
+
+block layout-content
+  div
+    h1 Round 2
+
+    each game in round2 
+        if game.complete === 0
+            div #{game.hteam} v #{game.ateam} at #{game.venue}
+        else 
+            if game.hscore === game.ascore
+                div #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} drew with  #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} at #{game.venue}
+            else if game.hscore > game.ascore
+                div #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} defeated  #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} at #{game.venue}    
+            else     
+                div #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} defeated  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} at #{game.venue}

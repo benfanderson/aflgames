@@ -4,7 +4,7 @@
   "description": "Using NPM, Express and the Squiggle AFL API to develop an app displaying the games of the shortened 2020 AFL season",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/benfanderson/aflgames/issues"
   },
-  "homepage": "https://github.com/benfanderson/aflgames#readme"
+  "homepage": "https://github.com/benfanderson/aflgames#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "got": "^11.3.0",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
