@@ -25,7 +25,7 @@ exports.getRound1 = function(req, res) {
                     round1.push(element)
                 }     
             });
-            res.render('round1', {title: 'Round 1', round1})
+            res.render('round_detail', {title: 'Round 1', round: round1})
             
         } catch (error) {
             console.log(error);
@@ -45,7 +45,7 @@ exports.getRound2 = function(req, res) {
                     round2.push(element)
                 }     
             });
-            res.render('round2', {title: 'Round 2', round2})
+            res.render('round_detail', {title: 'Round 2', round: round2})
             console.log(round2)
             
         } catch (error) {
@@ -66,7 +66,7 @@ exports.getRound3 = function(req, res) {
                     round3.push(element)
                 }     
             });
-            res.render('round3', {title: 'Round 3', round3})
+            res.render('round_detail', {title: 'Round 3', round: round3})
             
         } catch (error) {
             console.log(error);
@@ -86,7 +86,7 @@ exports.getRound4 = function(req, res) {
                     round4.push(element)
                 }     
             });
-            res.render('round4', {title: 'Round 4', round4})
+            res.render('round_detail', {title: 'Round 4', round: round4})
             
         } catch (error) {
             console.log(error);
@@ -106,7 +106,7 @@ exports.getRound5 = function(req, res) {
                     round5.push(element)
                 }     
             });
-            res.render('round5', {title: 'Round 5', round5})
+            res.render('round_detail', {title: 'Round 5', round: round5})
             
         } catch (error) {
             console.log(error);
