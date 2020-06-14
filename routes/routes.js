@@ -1,9 +1,5 @@
 const express = require('express');
-
 const router = express.Router();
-
-const app = express();
-
 const controllers = require('../controllers/controller')
 
 router.get('/', controllers.roundLinks)
