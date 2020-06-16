@@ -1,15 +1,8 @@
 const got = require('got');
 
 exports.roundLinks = function(req, res) {
-    (async () => {
-        try {
-            res.render('index', {title: 'Season 2020'})
-        } catch (error) {
-            console.log(error);
-        }
-    })()
-    
-}
+    res.render('index', {title: 'Season 2020'})
+};
 
 
 
