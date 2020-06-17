@@ -1,5 +1,4 @@
 const got = require('got');
-var gamesArray; 
 
 exports.roundLinks = function(req, res) {
     res.render('index', {title: 'Season 2020'})
@@ -14,7 +13,6 @@ exports.roundLinks = function(req, res) {
         console.log(error); 
     }   
 })();
-
 
 exports.getRound1 = function(req, res) {
     const round =[];
