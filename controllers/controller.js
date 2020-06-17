@@ -17,51 +17,51 @@ exports.roundLinks = function(req, res) {
 
 
 exports.getRound1 = function(req, res) {
-    const round1 =[];
+    const round =[];
     gamesArray.forEach(element => {
         if (element.round === 1 && element.year === 2020) {
-            round1.push(element)
+            round.push(element)
         }     
     });
-    res.render('round_detail', {title: 'Round 1', round: round1})
+    res.render('round_detail', {title: 'Round 1', round})
 }
 
 exports.getRound2 = function(req, res) {
-    const round2 =[];
+    const round =[];
     gamesArray.forEach(element => {
         if (element.round === 2 && element.year === 2020) {
-            round2.push(element)
+            round.push(element)
         }     
     });
-    res.render('round_detail', {title: 'Round 2', round: round2})
+    res.render('round_detail', {title: 'Round 2', round})
 }
 
 exports.getRound3 = function(req, res) {
-    const round3 =[];
+    const round =[];
     gamesArray.forEach(element => {
         if (element.round === 3 && element.year === 2020) {
-            round3.push(element)
+            round.push(element)
         }     
     });
-    res.render('round_detail', {title: 'Round 3', round: round3})
+    res.render('round_detail', {title: 'Round 3', round})
 }
 
 exports.getRound4 = function(req, res) {
-    const round4 =[];
+    const round =[];
     gamesArray.forEach(element => {
         if (element.round === 4 && element.year === 2020) {
-            round4.push(element)
+            round.push(element)
         }     
     });
-    res.render('round_detail', {title: 'Round 4', round: round4})
+    res.render('round_detail', {title: 'Round 4', round})
 }
 
 exports.getRound5 = function(req, res) {
-    const round5 =[];
+    const round =[];
     gamesArray.forEach(element => {
         if (element.round === 5 && element.year === 2020) {
-            round5.push(element)
+            round.push(element)
         }     
     });
-    res.render('round_detail', {title: 'Round 5', round: round5})
+    res.render('round_detail', {title: 'Round 5', round})
 }
