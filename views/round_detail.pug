@@ -3,10 +3,11 @@ extends layout
 block layout-content
   div
     h1 #{title}
-
     each game in round 
         if game.complete === 0
-            div #{game.hteam} v #{game.ateam} at #{game.venue}
+            div 
+                p #{game.hteam} v #{game.ateam}
+                p #{game.day}, #{game.time} at #{game.venue}
         else if game.complete < 100
             div 
                 span(id='dot')
