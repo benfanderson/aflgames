@@ -39,7 +39,7 @@ function getRoundInfo(roundNumber) {
       }
       element.date = moment(element.date).local();
       element.time = moment(element.date).format('h:mma');
-      element.day = moment(element.date).format('dddd MMM D');
+      element.day = moment(element.date).format('ddd MMM D');
       roundArray.push(element);
     }
   });

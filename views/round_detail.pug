@@ -1,21 +1,39 @@
 extends layout
 
 block layout-content
-  div
     h1 #{title}
-    each game in round 
-        if game.complete === 0
-            div 
-                p #{game.hteam} v #{game.ateam}
-                p #{game.day}, #{game.time} at #{game.venue}
-        else if game.complete < 100
-            div 
-                span(id='dot')
-                |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} v #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} at #{game.venue}   
-        else 
-            if game.hscore === game.ascore
-                div #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} drew with  #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} at #{game.venue}
-            else if game.hscore > game.ascore
-                div #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} defeated  #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} at #{game.venue}    
-            else     
-                div #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} defeated  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} at #{game.venue}
+    div(id='games-container')
+        each game in round 
+            if game.complete === 0
+                div(class='game')
+                    div(class='game-teams') 
+                        p #{game.hteam} 
+                        p #{game.ateam}
+                    div(class='game-details') #{game.day}, #{game.time} #{game.venue}
+            else if game.complete < 100
+                div(class='game') 
+                    div(class='game-teams')
+                        p 
+                        span(id='live-dot')
+                        |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                        p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
+                    div(class='game-details') #{game.day}, #{game.time} #{game.venue}  
+            else 
+                if game.hscore === game.ascore
+                    div(class='game') 
+                        div(class='game-teams') 
+                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                        div(class='game-details') #{game.day} #{game.venue}      
+                else if game.hscore > game.ascore
+                    div(class='game') 
+                        div(class='game-teams') 
+                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                        div(class='game-details') #{game.day}  #{game.venue}          
+                else     
+                    div(class='game') 
+                        div(class='game-teams') 
+                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
+                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore}
+                        div(class='game-details') #{game.day} #{game.venue}      
