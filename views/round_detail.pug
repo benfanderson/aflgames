@@ -25,15 +25,17 @@ block layout-content
                             p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
-                else if game.hscore > game.ascore
+                else if game.winnerteamid === game.hteamid
                     div(class='game') 
                         div(class='game-teams') 
-                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            strong  
+                                p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day}  #{game.venue}          
                 else     
                     div(class='game') 
                         div(class='game-teams') 
-                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
-                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore}
+                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            strong 
+                                p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
