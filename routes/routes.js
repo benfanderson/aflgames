@@ -9,5 +9,6 @@ router.get('/round2', controllers.getRound2);
 router.get('/round3', controllers.getRound3);
 router.get('/round4', controllers.getRound4);
 router.get('/round5', controllers.getRound5);
+router.get('/round6', controllers.getRound6);
 
 module.exports = router;
