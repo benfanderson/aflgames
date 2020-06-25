@@ -39,79 +39,79 @@ function getRoundInfo(roundNumber) {
       }
 
       if (element.hteam === 'Adelaide') {
-          element.hlogo = '/public/images/AdelaideCrows.svg'
+          element.hlogo = '/images/AdelaideCrows.svg'
       } else if (element.hteam === 'Brisbane Lions') {
-        element.hlogo = '/public/images/BrisbaneLions.svg'
+        element.hlogo = '/images/BrisbaneLions.svg'
       } else if (element.hteam === 'Carlton') {
-        element.hlogo = 'Carlton'
+        element.hlogo = '/images/Carlton.svg'
       } else if (element.hteam === 'Collingwood') {
-        element.hlogo = 'Collingwood'
+        element.hlogo = '/images/Collingwood.svg'
       } else if (element.hteam === 'Essendon') {
-        element.hlogo = 'Essendon'
+        element.hlogo = '/images/Essendon.svg'
       } else if (element.hteam === 'Fremantle') {
-        element.hlogo = 'Fremantle'
+        element.hlogo = '/images/Fremantle.svg'
       } else if (element.hteam === 'Geelong') {
-        element.hlogo = 'GeelongCats'
+        element.hlogo = '/images/GeelongCats.svg'
       } else if (element.hteam === 'Gold Coast') {
-        element.hlogo = 'GoldCoastSuns'
+        element.hlogo = '/images/GoldCoastSuns.svg'
       } else if (element.hteam === 'Greater Western Sydney') {
-        element.hlogo = 'GWSGiants'
+        element.hlogo = '/images/GWSGiants.svg'
       } else if (element.hteam === 'Hawthorn') {
-        element.hlogo = 'Hawthorn'
+        element.hlogo = '/images/Hawthorn.svg'
       } else if (element.hteam === 'Melbourne') {
-        element.hlogo = 'Melbourne'
+        element.hlogo = '/images/Melbourne.svg'
       } else if (element.hteam === 'North Melbourne') {
-        element.hlogo = 'NorthMelbourne'
+        element.hlogo = '/images/NorthMelbourne.svg'
       } else if (element.hteam === 'Port Adelaide') {
-        element.hlogo = 'PortAdelaide'
+        element.hlogo = '/images/PortAdelaide.svg'
       } else if (element.hteam === 'Richmond') {
-        element.hlogo = 'Richmond'
+        element.hlogo = '/images/Richmond.svg'
       } else if (element.hteam === 'St Kilda') {
-        element.hlogo = 'StKilda'
+        element.hlogo = '/images/StKilda.svg'
       } else if (element.hteam === 'Sydney') {
-        element.hlogo = 'SydneySwans'
+        element.hlogo = '/images/SydneySwans.svg'
       } else if (element.hteam === 'West Coast') {
-        element.hlogo = 'WestCoastEagles'  
+        element.hlogo = '/images/WestCoastEagles.svg'
       } else if (element.hteam === 'Western Bulldogs') {
-        element.hlogo = 'WesternBulldogs'
+        element.hlogo = '/images/WesternBulldogs.svg'
       }
       
         if (element.ateam === 'Adelaide') {
-        element.alogo = '/public/images/AdelaideCrows.svg'
+        element.alogo = '/images/AdelaideCrows.svg'
         } else if (element.ateam === 'Brisbane Lions') {
-        element.alogo = '/public/images/BrisbaneLions.svg'
+        element.alogo = '/images/BrisbaneLions.svg'
         } else if (element.ateam === 'Carlton') {
-        element.alogo = 'Carlton'
+        element.alogo = '/images/Carlton.svg'
         } else if (element.ateam === 'Collingwood') {
-        element.alogo = 'Collingwood'
+        element.alogo = '/images/Collingwood.svg'
         } else if (element.ateam === 'Essendon') {
-        element.alogo = 'Essendon'
+        element.alogo = '/images/Essendon.svg'
         } else if (element.ateam === 'Fremantle') {
-        element.alogo = 'Fremantle'
+        element.alogo = '/images/Fremantle.svg'
         } else if (element.ateam === 'Geelong') {
-        element.alogo = 'GeelongCats'
+        element.alogo = '/images/GeelongCats.svg'
         } else if (element.ateam === 'Gold Coast') {
-        element.alogo = 'GoldCoastSuns'
+        element.alogo = '/images/GoldCoastSuns.svg'
         } else if (element.ateam === 'Greater Western Sydney') {
-        element.alogo = 'GWSGiants'
+        element.alogo = '/images/GWSGiants.svg'
         } else if (element.ateam === 'Hawthorn') {
-        element.alogo = 'Hawthorn'
+        element.alogo = '/images/Hawthorn.svg'
         } else if (element.ateam === 'Melbourne') {
-        element.alogo = 'Melbourne'
+        element.alogo = '/images/Melbourne.svg'
         } else if (element.ateam === 'North Melbourne') {
-        element.alogo = 'NorthMelbourne'
+        element.alogo = '/images/NorthMelbourne.svg'
         } else if (element.ateam === 'Port Adelaide') {
-        element.alogo = 'PortAdelaide'
+        element.alogo = '/images/PortAdelaide.svg'
         } else if (element.ateam === 'Richmond') {
-        element.alogo = 'Richmond'
+        element.alogo = '/images/Richmond.svg'
         } else if (element.ateam === 'St Kilda') {
-        element.alogo = 'StKilda'
+        element.alogo = '/images/StKilda.svg'
         } else if (element.ateam === 'Sydney') {
-        element.alogo = 'SydneySwans'
+        element.alogo = '/images/SydneySwans.svg'
         } else if (element.ateam === 'West Coast') {
-        element.alogo = 'WestCoastEagles'  
+        element.alogo = '/images/WestCoastEagles.svg' 
         } else if (element.ateam === 'Western Bulldogs') {
-        element.alogo = 'WesternBulldogs'
+        element.alogo = '/images/WesternBulldogs.svg'
         }
       
 
