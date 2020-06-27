@@ -7,35 +7,55 @@ block layout-content
             if game.complete === 0
                 div(class='game')
                     div(class='game-teams') 
-                        p #{game.hteam} 
-                        p #{game.ateam}   
+                        p 
+                        img(src= game.hlogo, alt=game.hteam) 
+                        | #{game.hteam} 
+                        p 
+                        img(src=game.alogo, alt=game.ateam)
+                        | #{game.ateam}   
                     div(class='game-details') #{game.day}, #{game.time} #{game.venue}
             else if game.complete < 100
                 div(class='game') 
                     div(class='game-teams')
                         p 
-                        span(id='live-dot')
+                        img(src= game.hlogo, alt=game.hteam) 
                         |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                        p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
-                    div(class='game-details') #{game.day}, #{game.time} #{game.venue}  
+                        p 
+                        img(src=game.alogo, alt=game.ateam)
+                        | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
+                    div(class='game-details')
+                        span(id='live-dot')
+                        | #{game.day}, #{game.time} #{game.venue}  
             else 
                 if game.hscore === game.ascore
                     div(class='game') 
                         div(class='game-teams') 
-                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                            p 
+                            img(src= game.hlogo, alt=game.hteam) 
+                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            p 
+                            img(src=game.alogo, alt=game.ateam)
+                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
                 else if game.winnerteamid === game.hteamid
                     div(class='game') 
                         div(class='game-teams') 
                             strong  
-                                p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                                img(src= game.hlogo, alt=game.hteam) 
+                                p 
+                                | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            p 
+                            img(src= game.alogo, alt=game.ateam) 
+                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day}  #{game.venue}          
                 else     
                     div(class='game') 
                         div(class='game-teams') 
-                            p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            strong 
-                                p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                            p 
+                            img(src= game.hlogo, alt=game.hteam) 
+                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            strong
+                                p
+                                img(src=game.alogo, alt=game.ateam) 
+                                | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
