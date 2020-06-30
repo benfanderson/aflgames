@@ -153,4 +153,9 @@ exports.getRound5 = function (req, res) {
 exports.getRound6 = function (req, res) {
     const round = getRoundInfo(6);
     res.render('round_detail', { title: 'Round 6', round });
-  };
+};
+
+exports.getRound7 = function (req, res) {
+  const round = getRoundInfo(7);
+  res.render('round_detail', { title: 'Round 6', round });
+};
