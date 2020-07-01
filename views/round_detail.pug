@@ -7,22 +7,22 @@ block layout-content
             if game.complete === 0
                 div(class='game')
                     div(class='game-teams') 
-                        p 
-                        img(src= game.hlogo, alt=game.hteam) 
-                        | #{game.hteam} 
-                        p 
-                        img(src=game.alogo, alt=game.ateam)
-                        | #{game.ateam}   
+                        div 
+                            img(class='logo' src= game.hlogo, alt=game.hteam) 
+                            span #{game.hteam} 
+                        div
+                        img(class='logo'  src=game.alogo, alt=game.ateam)
+                        span #{game.ateam}   
                     div(class='game-details') #{game.day}, #{game.time} #{game.venue}
             else if game.complete < 100
                 div(class='game') 
                     div(class='game-teams')
                         p 
-                        img(src= game.hlogo, alt=game.hteam) 
-                        |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                            img(class='logo'  src= game.hlogo, alt=game.hteam) 
+                            |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                         p 
-                        img(src=game.alogo, alt=game.ateam)
-                        | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
+                            img(class='logo'  src=game.alogo, alt=game.ateam)
+                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
                     div(class='game-details')
                         span(id='live-dot')
                         | #{game.day}, #{game.time} #{game.venue}  
@@ -31,31 +31,29 @@ block layout-content
                     div(class='game') 
                         div(class='game-teams') 
                             p 
-                            img(src= game.hlogo, alt=game.hteam) 
-                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                                img(class='logo' src= game.hlogo, alt=game.hteam) 
+                                | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             p 
-                            img(src=game.alogo, alt=game.ateam)
-                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                                img(class='logo' src=game.alogo, alt=game.ateam)
+                                | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
                 else if game.winnerteamid === game.hteamid
                     div(class='game') 
                         div(class='game-teams') 
                             strong  
-                                img(src= game.hlogo, alt=game.hteam) 
-                                p 
+                                img(class='logo' src= game.hlogo, alt=game.hteam) 
                                 | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             p 
-                            img(src= game.alogo, alt=game.ateam) 
-                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                                img(class='logo' src= game.alogo, alt=game.ateam) 
+                                | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day}  #{game.venue}          
                 else     
                     div(class='game') 
                         div(class='game-teams') 
                             p 
-                            img(src= game.hlogo, alt=game.hteam) 
-                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                                img(class='logo' src= game.hlogo, alt=game.hteam) 
+                                | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             strong
-                                p
-                                img(src=game.alogo, alt=game.ateam) 
+                                img(class='logo' src=game.alogo, alt=game.ateam) 
                                 | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                         div(class='game-details') #{game.day} #{game.venue}      
