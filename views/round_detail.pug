@@ -1,61 +1,34 @@
-extends layout
-
 block layout-content
-    h1 #{title}
-    div(id='games-container')
-        each game in round 
-            if game.complete === 0
-                div(class='game')
-                    div(class='game-teams') 
-                        p 
-                        img(src= game.hlogo, alt=game.hteam) 
-                        | #{game.hteam} 
-                        p 
-                        img(src=game.alogo, alt=game.ateam)
-                        | #{game.ateam}   
-                    div(class='game-details') #{game.day}, #{game.time} #{game.venue}
-            else if game.complete < 100
-                div(class='game') 
-                    div(class='game-teams')
-                        p 
-                        img(src= game.hlogo, alt=game.hteam) 
-                        |  #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                        p 
-                        img(src=game.alogo, alt=game.ateam)
-                        | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
-                    div(class='game-details')
-                        span(id='live-dot')
-                        | #{game.day}, #{game.time} #{game.venue}  
-            else 
-                if game.hscore === game.ascore
-                    div(class='game') 
-                        div(class='game-teams') 
-                            p 
-                            img(src= game.hlogo, alt=game.hteam) 
-                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            p 
-                            img(src=game.alogo, alt=game.ateam)
-                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
-                        div(class='game-details') #{game.day} #{game.venue}      
-                else if game.winnerteamid === game.hteamid
-                    div(class='game') 
-                        div(class='game-teams') 
-                            strong  
-                                img(src= game.hlogo, alt=game.hteam) 
-                                p 
-                                | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            p 
-                            img(src= game.alogo, alt=game.ateam) 
-                            | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
-                        div(class='game-details') #{game.day}  #{game.venue}          
-                else     
-                    div(class='game') 
-                        div(class='game-teams') 
-                            p 
-                            img(src= game.hlogo, alt=game.hteam) 
-                            | #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            strong
-                                p
-                                img(src=game.alogo, alt=game.ateam) 
-                                | #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
-                        div(class='game-details') #{game.day} #{game.venue}      
+    h1 Round #{title}
+    div(id='score')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+        div(class='game')
+
+    script(src="/socket.io/socket.io.js")
+    script.
+        const scores = document.getElementById('scores');
+        const games = document.getElementsByClassName('game');
+        const socket = io();
+
+        socket.on('FromAPI', roundArray => {
+            for (let i = 0; i < roundArray.length; i++) {
+                if (roundArray[i].complete === 0) {
+                    games[i].innerHTML= ` ${roundArray[i].hteam} v ${roundArray[i].ateam}`
+                } else if (roundArray[i].complete < 100) {
+                    games[i].innerHTML= `<span id='live-dot'></span> ${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
+
+                } else {
+                    games[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
+                }
+            }
+        });
+
