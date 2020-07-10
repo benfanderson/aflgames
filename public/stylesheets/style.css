@@ -35,7 +35,7 @@ body {
     width:25%
 } */
 
-#live-dot {
+/* #live-dot {
     width: 8px;
     height: 8px;
     border: 1px solid rgb(238, 86, 99);
@@ -45,6 +45,14 @@ body {
     animation-iteration-count: infinite;
     opacity: 0.5;
     display: inline-block;
+} */
+
+
+.live-score{
+    color: rgb(238, 86, 99);
+    animation: pulsate 1.5s ease-out;         
+    animation-iteration-count: infinite;
+    opacity: 0.5;
 }
 @keyframes pulsate {
     0% {
