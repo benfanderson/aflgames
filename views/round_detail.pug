@@ -2,73 +2,87 @@ extends layout
 
 block layout-content
     h1 Round #{title}
-    div(id='score')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time') 
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time') 
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')         
+    div(id='scores')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time') 
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time') 
+        //- div(class='game')
+        //-     p(class='team-score')
+        //-     p(class='venue')
+        //-     p(class='date-time')         
 
     script(src="/socket.io/socket.io.js")
     script.
-        //- const scores = document.getElementById('scores');
-        const teams = document.getElementsByClassName('team-score');
-        const venues = document.getElementsByClassName('venue');
-        const date = document.getElementsByClassName('date-time');
+        const scores = document.getElementById('scores');
+        //- const teams = document.getElementsByClassName('team-score');
+        //- const venues = document.getElementsByClassName('venue');
+        //- const date = document.getElementsByClassName('date-time');
         const socket = io();
 
         socket.on('FromAPI', roundArray => {
+            console.log(roundArray.length);
             for (let i = 0; i < roundArray.length; i++) {
+                const game = document.createElement('div');
+                game.classList.add('game');
+                scores.appendChild(game);
+                const teams = document.createElement('p');
+                teams.classList.add('team-score');
+                game.appendChild(teams);
+                const venue = document.createElement('p');
+                venue.classList.add('venue');
+                game.appendChild(venue);
+                const date = document.createElement('p');
+                date.classList.add('date-time');
+                game.appendChild(date);
+
                 if (roundArray[i].complete === 0) {
-                    teams[i].innerHTML= ` ${roundArray[i].hteam} v ${roundArray[i].ateam}`;
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
-                    date[i].innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
+                    teams.innerHTML= ` ${roundArray[i].hteam} v ${roundArray[i].ateam}`;
+                    venue.innerHTML = `${roundArray[i].venue}`;
+                    date.innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
                 } else if (roundArray[i].complete < 100) {
-                    teams[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
-                    date[i].innerHTML = "LIVE NOW";
-                    date[i].classList.add("live-score");
+                    teams.innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
+                    venue.innerHTML = `${roundArray[i].venue}`;
+                    date.innerHTML = "LIVE NOW";
+                    date.classList.add("live-score");
 
                 } else {
-                    teams[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`;
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
-                    date[i].classList.remove("live-score");
-                    date[i].innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
+                    teams.innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`;
+                    venue.innerHTML = `${roundArray[i].venue}`;
+                    date.classList.remove("live-score");
+                    date.innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
                 }
             }
         });

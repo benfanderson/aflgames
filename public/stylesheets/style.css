@@ -13,7 +13,7 @@ body {
     margin: auto;
 }
 
-#score{
+#scores{
     display: flex;
     flex-wrap: wrap;
 }
@@ -47,7 +47,7 @@ body {
 /*View for tablet*/
 @media (min-width: 479px) {
 
-    #score {
+    #scores {
         justify-content: space-between;
     }
 
