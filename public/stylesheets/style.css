@@ -5,7 +5,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(218, 218, 238);
+    background-color: rgb(223, 230, 243);
 }
 
 #root{
@@ -19,7 +19,6 @@ body {
 }
 
 .game{
-    width:48%;
     width: 100%;
     background-color: white;
     padding: 2%;
@@ -43,4 +42,27 @@ body {
     100% {
         opacity: 0.5;
     }
+}
+
+/*View for tablet*/
+@media (min-width: 479px) {
+
+    #score {
+        justify-content: space-between;
+    }
+
+    .game{
+        width: 45%;
+    }    
+}
+
+  /*View for desktop*/
+  @media (min-width: 1000px) {
+
+    .game{
+        width: 30%;
+        padding: 1%;
+        margin-bottom: 1%;
+    } 
+    
 }
