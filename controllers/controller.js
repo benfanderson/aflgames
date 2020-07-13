@@ -148,3 +148,8 @@ exports.getRound7 = function (req, res) {
   getGame(7);
   res.render('round_detail', { title: 7 });
 };
+
+exports.getRound8 = function (req, res) {
+  getGame(8);
+  res.render('round_detail', { title: 8 });
+};
