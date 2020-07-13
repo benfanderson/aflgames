@@ -4,6 +4,33 @@ const tzMoment = require('moment-timezone');
 const { io } = require('../index');
 let interval;
 
+
+const getLiveScores = async (socket, round) =>{
+  try {
+    const response = await got('https://api.squiggle.com.au/?q=games');
+    const parsed = JSON.parse(response.body);
+    const gamesArray = parsed.games;
+    scoresArray = [];
+    gamesArray.forEach((element) => {
+      if (element.round === round && element.year === 2020) {
+        const gameObj = {
+          hbehinds: element.hbehinds,
+          hgoals: element.hgoals,
+          hscore: element.hscore,
+          abehinds: element.abehinds,
+          agoals: element.agoals,
+          ascore: element.ascore,
+          complete: element.complete
+        }
+        scoresArray.push(gameObj);
+      }
+      socket.emit('liveScores', scoresArray);
+    });
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
+}
+
 const getApiAndEmit = async (socket, round) => {
   try {
     const response = await got('https://api.squiggle.com.au/?q=games');
@@ -106,7 +133,8 @@ const getGame = function (round) {
     if (interval) {
       clearInterval(interval);
     }
-    interval = setInterval(() => getApiAndEmit(socket, round), 3000);
+    interval = setInterval(() => getLiveScores(socket, round), 3000);
+    getApiAndEmit(socket, round);
   });
 };
 
@@ -147,4 +175,9 @@ exports.getRound6 = function (req, res) {
 exports.getRound7 = function (req, res) {
   getGame(7);
   res.render('round_detail', { title: 7 });
+};
+
+exports.getRound7 = function (req, res) {
+  getGame(8);
+  res.render('round_detail', { title: 8 });
 };
