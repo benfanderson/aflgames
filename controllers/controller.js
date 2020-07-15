@@ -130,8 +130,8 @@ exports.roundLinks = function (req, res) {
 };
 
 exports.getRound1 = function (req, res) {
-  const round = getRoundInfo(3);
-  getGame(3);
+  const round = getRoundInfo(8);
+  getGame(8);
   res.render('test', { title: 1, round });
 };
 
