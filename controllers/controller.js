@@ -15,6 +15,16 @@ let gamesArray;
   }
 })()
 
+const getRoundInfo = function (round) {
+  const roundArray = [];
+  gamesArray.forEach( (element)=> {
+    if (element.round === round && element.year === 2020) {
+      roundArray.push(element);
+    }
+  });
+  return roundArray
+};
+
 const getApiAndEmit = function (socket, round) {
   const roundArray = [];
   gamesArray.forEach((element) => {
@@ -120,9 +130,15 @@ exports.roundLinks = function (req, res) {
 };
 
 exports.getRound1 = function (req, res) {
-  getGame(1);
-  res.render('round_detail', { title: 1 });
+  const round = getRoundInfo(3);
+  getGame(3);
+  res.render('test', { title: 1, round });
 };
+
+// exports.getRound1 = function (req, res) {
+//   getGame(1);
+//   res.render('round_detail', { title: 1 });
+// };
 
 exports.getRound2 = function (req, res) {
   getGame(2);
