@@ -5,6 +5,8 @@ const { io } = require('../index');
 let interval;
 let gamesArray;
 
+
+
 (async() => {
   try {
     const response = await got('https://api.squiggle.com.au/?q=games');
@@ -19,14 +21,22 @@ const getRoundInfo = function (round) {
   const roundArray = [];
   gamesArray.forEach( (element)=> {
     if (element.round === round && element.year === 2020) {
+      element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
+      element.date = moment(element.date).local();
+      element.time = moment(element.date).format('h:mma');
+      element.day = moment(element.date).format('ddd MMM D');
       roundArray.push(element);
     }
   });
   return roundArray
 };
 
-const getApiAndEmit = function (socket, round) {
-  const roundArray = [];
+const getApiAndEmit = async (socket, round) => {
+  try {
+    const response = await got('https://api.squiggle.com.au/?q=games');
+    const parsed = JSON.parse(response.body);
+    const gamesArray = parsed.games;
+    const roundArray = [];
   gamesArray.forEach((element) => {
     if (element.round === round && element.year === 2020) {
         if (element.hteam === 'Adelaide') {
@@ -113,6 +123,9 @@ const getApiAndEmit = function (socket, round) {
     }
   });
   socket.emit('FromAPI', roundArray);
+} catch (error) {
+  console.error(`Error: ${error.code}`);
+}
   
 };
 
@@ -130,8 +143,8 @@ exports.roundLinks = function (req, res) {
 };
 
 exports.getRound1 = function (req, res) {
-  const round = getRoundInfo(8);
-  getGame(8);
+  const round = getRoundInfo(7);
+  getGame(7);
   res.render('test', { title: 1, round });
 };
 

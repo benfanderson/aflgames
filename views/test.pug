@@ -9,9 +9,14 @@ block layout-content
                     p(class='team-score') #{game.hteam} v #{game.ateam}
                 else if game.complete === 100    
                     p(class='team-score') #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} v #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}   
+                else 
+                    p(class='team-score')      
 
                 p(class='venue') #{game.venue}
-                p(class='date-time')       
+                if game.complete === 0
+                    p(class='date-time') #{game.day}, #{game.time}   
+                else if game.complete === 100
+                    p(class='date-time') #{game.day}             
 
     script(src="/socket.io/socket.io.js")
     script.
@@ -26,11 +31,13 @@ block layout-content
 
                 if (roundArray[i].complete > 0 && roundArray[i].complete < 100) {
                     teams[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
+                    //- venues[i].innerHTML = `${roundArray[i].venue}`;
                     date[i].innerHTML = "LIVE NOW";
                     date[i].classList.add("live-score");
-
-                } 
+                } else if (roundArray[i].complete ===100) {
+                    date[i].classList.remove("live-score");
+                    date[i].innerHTML = `${roundArray[i].day}`;
+                }
 
                 //- if (roundArray[i].complete === 0) {
                 //-     teams[i].innerHTML= ` ${roundArray[i].hteam} v ${roundArray[i].ateam}`;
