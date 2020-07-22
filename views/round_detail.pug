@@ -3,46 +3,22 @@ extends layout
 block layout-content
     h1 Round #{title}
     div(id='scores')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time') 
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time') 
-        div(class='game')
-            p(class='team-score')
-            p(class='venue')
-            p(class='date-time')         
+        each game in round
+            div(class='game')
+                if game.complete === 0
+                    p(class='team-score') #{game.hteam} v #{game.ateam}
+                else if game.complete === 100    
+                    p(class='team-score') #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} v #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}   
+                else 
+                    p(class='team-score')      
+
+                p(class='venue') #{game.venue}
+                if game.complete === 0
+                    p(class='date-time') #{game.day}, #{game.time}   
+                else if game.complete === 100
+                    p(class='date-time') #{game.day}
+                else 
+                    p(class='date-time')                 
 
     script(src="/socket.io/socket.io.js")
     script.
@@ -53,52 +29,18 @@ block layout-content
         const socket = io();
 
         socket.on('FromAPI', roundArray => {
-
-            //- for (let i = 0; i < roundArray.length; i++) {
-            //-     const game = document.createElement('div');
-            //-     game.classList.add('game');
-            //-     score.appendChild(game);
-            //-     const teams = document.createElement('p');
-            //-     teams.classList.add('team-score');
-            //-     game.appendChild(teams);
-            //-     const venues = document.createElement('p');
-            //-     venues.classList.add('venue');
-            //-     game.appendChild(venues);
-            //-     const date = document.createElement('p');
-            //-     date.classList.add('date-time');
-            //-     game.appendChild(date);
-            //- }
-
             for (let i = 0; i < roundArray.length; i++) {
-                //- const game = document.createElement('div');
-                //- game.classList.add('game');
-                //- scores.appendChild(game);
-                //- const teams = document.createElement('p');
-                //- teams.classList.add('team-score');
-                //- game.appendChild(teams);
-                //- const venue = document.createElement('p');
-                //- venue.classList.add('venue');
-                //- game.appendChild(venue);
-                //- const date = document.createElement('p');
-                //- date.classList.add('date-time');
-                //- game.appendChild(date);
 
-                if (roundArray[i].complete === 0) {
-                    teams[i].innerHTML= ` ${roundArray[i].hteam} v ${roundArray[i].ateam}`;
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
-                    date[i].innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
-                } else if (roundArray[i].complete < 100) {
+                if (roundArray[i].complete > 0 && roundArray[i].complete < 100) {
                     teams[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
                     date[i].innerHTML = "LIVE NOW";
                     date[i].classList.add("live-score");
-
-                } else {
-                    teams[i].innerHTML= `${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} v ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore}`;
-                    venues[i].innerHTML = `${roundArray[i].venue}`;
+                } else if (roundArray[i].complete ===100) {
                     date[i].classList.remove("live-score");
-                    date[i].innerHTML = `${roundArray[i].day}, ${roundArray[i].time}`;
+                    date[i].innerHTML = `${roundArray[i].day}`;
                 }
             }
         });
+
+        
 
