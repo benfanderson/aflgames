@@ -31,7 +31,7 @@ const getRoundInfo = function (round) {
   return roundArray
 };
 
-const getApiAndEmit = async (socket, round) => {
+const emitLiveScores = async (socket, round) => {
   try {
     const response = await got('https://api.squiggle.com.au/?q=games');
     const parsed = JSON.parse(response.body);
@@ -39,8 +39,8 @@ const getApiAndEmit = async (socket, round) => {
     const roundArray = [];
   gamesArray.forEach((element) => {
     if (element.round === round && element.year === 2020) {
-        if (element.hteam === 'Adelaide') {
-          element.hlogo = '/images/AdelaideCrows.svg'
+      if (element.hteam === 'Adelaide') {
+        element.hlogo = '/images/AdelaideCrows.svg'
       } else if (element.hteam === 'Brisbane Lions') {
         element.hlogo = '/images/BrisbaneLions.svg'
       } else if (element.hteam === 'Carlton') {
@@ -129,12 +129,12 @@ const getApiAndEmit = async (socket, round) => {
   
 };
 
-const getGame = function (round) {
+const getLiveScores= function (round) {
   io.on('connect', (socket) => {
     if (interval) {
       clearInterval(interval);
     }
-    interval = setInterval(() => getApiAndEmit(socket, round), 3000);
+    interval = setInterval(() => emitLiveScores(socket, round), 3000);
   });
 };
 
@@ -144,72 +144,72 @@ exports.roundLinks = function (req, res) {
 
 exports.getRound1 = function (req, res) {
   const round = getRoundInfo(1);
-  getGame(1);
+  getLiveScores(1)
   res.render('round_detail', { title: 1, round });
 };
 
 exports.getRound2 = function (req, res) {
   const round = getRoundInfo(2);
-  getGame(2);
+  getLiveScores(2)
   res.render('round_detail', { title: 2, round });
 };
 
 exports.getRound3 = function (req, res) {
   const round = getRoundInfo(3);
-  getGame(3);
+  getLiveScores(3)
   res.render('round_detail', { title: 3, round });
 };
 
 exports.getRound4 = function (req, res) {
   const round = getRoundInfo(4);
-  getGame(4);
+  getLiveScores(4)
   res.render('round_detail', { title: 4, round });
 };
 
 exports.getRound5 = function (req, res) {
   const round = getRoundInfo(5);
-  getGame(5);
+  getLiveScores(5)
   res.render('round_detail', { title: 5, round });
 };
 
 exports.getRound6 = function (req, res) {
   const round = getRoundInfo(6);
-  getGame(6);
+  getLiveScores(6)
   res.render('round_detail', { title: 6, round });
 };
 
 exports.getRound7 = function (req, res) {
   const round = getRoundInfo(7);
-  getGame(7);
+  getLiveScores(7)
   res.render('round_detail', { title: 7, round });
 };
 
 exports.getRound8 = function (req, res) {
   const round = getRoundInfo(8);
-  getGame(8);
+  getLiveScores(8)
   res.render('round_detail', { title: 8, round });
 };
 
 exports.getRound9 = function (req, res) {
   const round = getRoundInfo(9);
-  getGame(9);
+  getLiveScores(9)
   res.render('round_detail', { title: 9, round });
 };
 
 exports.getRound10 = function (req, res) {
   const round = getRoundInfo(10);
-  getGame(10);
+  getLiveScores(10)
   res.render('round_detail', { title: 10, round });
 };
 
 exports.getRound11 = function (req, res) {
   const round = getRoundInfo(11);
-  getGame(11);
+  getLiveScores(11)
   res.render('round_detail', { title: 11, round });
 };
 
 exports.getRound12 = function (req, res) {
   const round = getRoundInfo(12);
-  getGame(12);
+  getLiveScores(12)
   res.render('round_detail', { title: 12, round});
 };
