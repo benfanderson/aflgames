@@ -24,6 +24,19 @@ body {
     padding: 2%;
     margin-bottom: 2%;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 10%;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    padding: 50% 0;
 }
 
 .live-score{

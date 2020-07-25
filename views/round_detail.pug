@@ -5,20 +5,25 @@ block layout-content
     div(id='scores')
         each game in round
             div(class='game')
-                if game.complete === 0
-                    p(class='team-score') #{game.hteam} v #{game.ateam}
-                else if game.complete === 100    
-                    p(class='team-score') #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} v #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}   
-                else 
-                    p(class='team-score')      
+                div(class='logo') 
+                    img(src= game.hlogo, alt=game.hteam) 
+                div(class='game-details')
+                    if game.complete === 0
+                        p(class='team-score') #{game.hteam} v #{game.ateam}
+                    else if game.complete === 100    
+                        p(class='team-score') #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} v #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}   
+                    else 
+                        p(class='team-score')      
 
-                p(class='venue') #{game.venue}
-                if game.complete === 0
-                    p(class='date-time') #{game.day}, #{game.time}   
-                else if game.complete === 100
-                    p(class='date-time') #{game.day}
-                else 
-                    p(class='date-time')                 
+                    p(class='venue') #{game.venue}
+                    if game.complete === 0
+                        p(class='date-time') #{game.day}, #{game.time}   
+                    else if game.complete === 100
+                        p(class='date-time') #{game.day}
+                    else 
+                        p(class='date-time') 
+                div(class='logo') 
+                    img(src= game.alogo, alt=game.ateam)                        
 
     script(src="/socket.io/socket.io.js")
     script.
