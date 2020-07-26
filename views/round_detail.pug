@@ -9,12 +9,26 @@ block layout-content
                     img(src= game.hlogo, alt=game.hteam + ` logo`) 
                 div(class='game-details')
                     if game.complete === 0
-                        p(class='team-score') #{game.hteam} v #{game.ateam} 
-                    else 
+                        div(class='team-score') #{game.hteam} v #{game.ateam} 
+                    else if game.complete < 100
                         div(class='team-score') 
                             p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
-                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}        
-
+                            p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}  
+                    else
+                        if game.hscore === game.ascore
+                            div(class='team-score')
+                                p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                                p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
+                        else if game.winnerteamid === game.hteamid
+                            div(class='team-score')
+                                strong  
+                                    p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                                p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
+                        else 
+                            div(class='team-score')
+                                p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
+                                strong 
+                                    p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
                     p(class='venue') #{game.venue}
                     if game.complete === 100
                         p(class='date-time') #{game.day}
