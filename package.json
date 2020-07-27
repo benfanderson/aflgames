@@ -4,7 +4,7 @@
   "description": "Using NPM, Express and the Squiggle AFL API to develop an app displaying the games of the shortened 2020 AFL season",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "dev": "nodemon --exec babel-node ./index.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,9 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "nodemon": "^2.0.4"
   }
 }
