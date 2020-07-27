@@ -90,10 +90,25 @@ body {
   /*View for desktop*/
   @media (min-width: 1000px) {
 
+    #root{
+        width: 80%;
+    }
+
     .game{
         width: 30%;
         padding: 1%;
         margin-bottom: 1%;
     } 
+
+    .logo{
+        width: 25%;
+    }
     
+    .game-details{
+        width:50%;
+    }
+
+    .logo img {
+        padding: 10% 0;
+    }
 }
