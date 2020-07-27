@@ -15,17 +15,15 @@ block layout-content
                             p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                             p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}  
                     else
-                        if game.hscore === game.ascore
-                            div(class='team-score')
+                        div(class='team-score')
+                            if game.hscore === game.ascore
                                 p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                                 p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore} 
-                        else if game.winnerteamid === game.hteamid
-                            div(class='team-score')
+                            else if game.winnerteamid === game.hteamid
                                 strong  
                                     p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                                 p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
-                        else 
-                            div(class='team-score')
+                            else 
                                 p #{game.hteam} #{game.hgoals}.#{game.hbehinds} #{game.hscore} 
                                 strong 
                                     p #{game.ateam} #{game.agoals}.#{game.abehinds} #{game.ascore}
