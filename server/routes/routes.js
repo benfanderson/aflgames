@@ -16,5 +16,12 @@ router.get('/round9', controllers.getRound9);
 router.get('/round10', controllers.getRound10);
 router.get('/round11', controllers.getRound11);
 router.get('/round12', controllers.getRound12);
+router.get('/round13', controllers.getRound13);
+router.get('/round14', controllers.getRound14);
+router.get('/round15', controllers.getRound15);
+router.get('/round16', controllers.getRound16);
+router.get('/round17', controllers.getRound17);
+router.get('/round18', controllers.getRound18);
+
 
 module.exports = router;

@@ -212,3 +212,39 @@ exports.getRound12 = function (req, res) {
   getLiveScores(12)
   res.render('round_detail', { title: 12, round});
 };
+
+exports.getRound13 = function (req, res) {
+  const round = getRoundInfo(13);
+  getLiveScores(13)
+  res.render('round_detail', { title: 13, round});
+};
+
+exports.getRound14 = function (req, res) {
+  const round = getRoundInfo(14);
+  getLiveScores(14)
+  res.render('round_detail', { title: 14, round});
+};
+
+exports.getRound15 = function (req, res) {
+  const round = getRoundInfo(15);
+  getLiveScores(15)
+  res.render('round_detail', { title: 15, round});
+};
+
+exports.getRound16 = function (req, res) {
+  const round = getRoundInfo(16);
+  getLiveScores(16)
+  res.render('round_detail', { title: 16, round});
+};
+
+exports.getRound17 = function (req, res) {
+  const round = getRoundInfo(17);
+  getLiveScores(17)
+  res.render('round_detail', { title: 17, round});
+};
+
+exports.getRound18 = function (req, res) {
+  const round = getRoundInfo(18);
+  getLiveScores(18)
+  res.render('round_detail', { title: 18, round});
+};
