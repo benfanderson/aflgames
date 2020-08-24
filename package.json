@@ -12,7 +12,7 @@
     "build": "npm-run-all clean transpile",
     "start": "nodemon ./dist/index.js",
     "dev": "NODE_ENV=development npm-run-all build start",
-    "transpile": "babel ./server --out-dir dist",
+    "transpile": "babel ./src --out-dir dist",
     "clean": "rimraf dist"
   },
   "repository": {
