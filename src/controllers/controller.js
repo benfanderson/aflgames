@@ -1,4 +1,4 @@
-const got = require('got');
+var got = require('got');
 const moment = require('moment');
 const tzMoment = require('moment-timezone');
 const { io } = require('../index');

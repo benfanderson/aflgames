@@ -1,13 +1,14 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
         "es2020": true
     },
-    "extends": "airbnb",
+    "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2020
+        "ecmaVersion": 2020,
+        "sourceType": "module"
     },
     "rules": {
+        "no-undef": "off"
     }
 }
