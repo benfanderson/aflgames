@@ -9,13 +9,11 @@
     ]
   },
   "scripts": {
-    "start": "npm run prod",
-    "build": "npm-run-all clean transpile",
-    "server": "nodemon ./dist/index.js",
-    "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server",
-    "transpile": "babel ./src --out-dir dist",
-    "clean": "rimraf dist"
+    "build-babel": "babel -d ./dist ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./dist/index.js",
+    "clean": "rm -rf dist && mkdir dist"
+
   },
   "repository": {
     "type": "git",
