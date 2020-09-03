@@ -1,9 +1,5 @@
 extends layout
 
 block layout-content
-  div
-    img( id='player' src='images/player.png', alt="Football player silhouette")
-    footer
-      hr
-      p(id='footer') Data for these matches is provided by #[a(href="https://api.squiggle.com.au/") Squiggle's AFL API]. The source code can be found on #[a(href='https://github.com/benfanderson/aflgames') Github].
-      hr                   
+  div(id='root')
+    img( id='player' src='/images/player.png', alt="Football player silhouette")                

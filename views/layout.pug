@@ -33,6 +33,11 @@ html
                 a(href='/afl/round16') Round 16
                 a(href='/afl/round17') Round 17
                 a(href='/afl/round18') Round 18
-        h1(id='title') AFL 2020 Live Scores       
-    div#root
-      block layout-content
+        a(href='/afl' id='title-link') 
+          h1(id='title') AFL 2020 Live Scores      
+    block layout-content
+    block foot
+      footer(id='footer')
+        hr
+        p Data for these matches is provided by #[a(href="https://api.squiggle.com.au/") Squiggle's AFL API]. The source code can be found on #[a(href='https://github.com/benfanderson/aflgames') Github].
+        hr 
