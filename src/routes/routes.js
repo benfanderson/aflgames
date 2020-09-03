@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/controller');
 
-router.get('/', controllers.roundLinks);
+router.get('/', controllers.index);
+router.get('/round_index', controllers.roundLinks);
 router.get('/round1', controllers.getRound1);
 router.get('/round2', controllers.getRound2);
 router.get('/round3', controllers.getRound3);

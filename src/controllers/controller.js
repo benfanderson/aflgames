@@ -16,6 +16,8 @@ let gamesArray;
   }
 })()
 
+
+
 const getRoundInfo = function (round) {
   const roundArray = [];
   gamesArray.forEach( (element)=> {
@@ -137,8 +139,12 @@ const getLiveScores= function (round) {
   });
 };
 
-exports.roundLinks = function (req, res) {
+exports.index = function (req, res) {
   res.render('index', { title: 'Season 2020' });
+};
+
+exports.roundLinks = function (req, res) {
+  res.render('round_index', { title: 'Games by round'});
 };
 
 exports.getRound1 = function (req, res) {
