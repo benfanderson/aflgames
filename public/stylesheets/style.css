@@ -71,6 +71,10 @@ display: block;
     margin: auto;
 }
 
+h2 {
+margin: 2% 0;
+}
+
 #player{
     width: 100%;
     height: auto;
@@ -80,6 +84,7 @@ display: block;
 #scores{
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 2%;
 }
 
 .game{
@@ -126,6 +131,10 @@ display: block;
     }
 }
 
+#footer {
+    text-align: center;
+}
+
 /*View for tablet*/
 @media (min-width: 479px) {
 
@@ -141,6 +150,10 @@ display: block;
         width: 80%;
         margin: 5% 10%;
     }
+
+    h2 {
+        margin: 1% 0;
+        }
 
     #scores {
         justify-content: space-between;
