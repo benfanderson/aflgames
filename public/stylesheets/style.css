@@ -71,6 +71,12 @@ display: block;
     margin: auto;
 }
 
+#player{
+    width: 100%;
+    height: auto;
+    margin: 5% auto;
+}
+
 #scores{
     display: flex;
     flex-wrap: wrap;
@@ -131,6 +137,11 @@ display: block;
         font-size: 2em;
     }
 
+    #player{
+        width: 80%;
+        margin: 5% 10%;
+    }
+
     #scores {
         justify-content: space-between;
     }
@@ -158,6 +169,11 @@ display: block;
 
     #root{
         width: 80%;
+    }
+
+    #player{
+        width: 50%;
+        margin: 2% 20%;
     }
 
     .game{
