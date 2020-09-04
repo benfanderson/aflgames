@@ -2,10 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 const controllers = require('../controllers/round_controller');
+const clubController = require('../controllers/club_contollers')
 
 router.get('/', controllers.index);
+
 router.get('/round_index', controllers.roundLinks);
-router.get('/club_index', controllers.clubLinks);
 router.get('/round1', controllers.getRound1);
 router.get('/round2', controllers.getRound2);
 router.get('/round3', controllers.getRound3);
@@ -24,6 +25,27 @@ router.get('/round15', controllers.getRound15);
 router.get('/round16', controllers.getRound16);
 router.get('/round17', controllers.getRound17);
 router.get('/round18', controllers.getRound18);
+
+router.get('/club_index', clubController.clubLinks);
+router.get('/adelaide', clubController.adelaide);
+router.get('/brisbane', clubController.brisbane);
+router.get('/carlton', clubController.carlton);
+router.get('/collingwood', clubController.collingwood);
+router.get('/essendon', clubController.essendon);
+router.get('/fremantle', clubController.fremantle);
+router.get('/geelong', clubController.geelong);
+router.get('/goldcoast', clubController.goldcoast);
+router.get('/greaterwesternsydney', clubController.gws);
+router.get('/hawthorn', clubController.hawthorn);
+router.get('/melbourne', clubController.melbourne);
+router.get('/northmelbourne', clubController.northmelbourne);
+router.get('/portadelaide', clubController.portadelaide);
+router.get('/richmond', clubController.richmond);
+router.get('/stkilda', clubController.stkilda);
+router.get('/sydney', clubController.sydney);
+router.get('/westcoast', clubController.westcoast);
+router.get('/westernbulldogs', clubController.westernbulldogs);
+
 
 
 module.exports = router;

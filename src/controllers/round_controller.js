@@ -114,19 +114,19 @@ const emitLiveScores = async (socket, round) => {
     const parsed = JSON.parse(response.body);
     const gamesArray = parsed.games;
     const roundArray = [];
-  gamesArray.forEach((element) => {
-    if (element.round === round && element.year === 2020) {
-      element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-      element.date = moment(element.date).local();
-      element.time = moment(element.date).format('h:mma');
-      element.day = moment(element.date).format('ddd MMM D');
-      roundArray.push(element);
-    }
-  });
-  socket.emit('FromAPI', roundArray);
-} catch (error) {
-  console.error(`Error: ${error.code}`);
-}
+    gamesArray.forEach((element) => {
+      if (element.round === round && element.year === 2020) {
+        element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
+        element.date = moment(element.date).local();
+        element.time = moment(element.date).format('h:mma');
+        element.day = moment(element.date).format('ddd MMM D');
+        roundArray.push(element);
+      }
+    });
+    socket.emit('RoundAPI', roundArray);
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
   
 };
 
@@ -147,9 +147,9 @@ exports.roundLinks = function (req, res) {
   res.render('round_index', { title: 'Games by round'});
 };
 
-exports.clubLinks = function (req, res) {
-  res.render('club_index', { title: 'Games by club'});
-};
+// exports.clubLinks = function (req, res) {
+//   res.render('club_index', { title: 'Games by club'});
+// };
 
 exports.getRound1 = function (req, res) {
   const round = getRoundInfo(1);

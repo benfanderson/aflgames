@@ -2,9 +2,9 @@ extends layout
 
 block layout-content
     div(id='root')
-        h2 Round #{title}
+        h2 #{title}
         div(id='scores')
-            each game in round
+            each game in club
                 div(class='game')
                     div(class='logo') 
                         img(src= game.hlogo, alt=game.hteam + ` logo`) 
@@ -44,18 +44,18 @@ block layout-content
         const date = document.getElementsByClassName('date-time');
         const socket = io();
 
-        socket.on('RoundAPI', roundArray => {
-            for (let i = 0; i < roundArray.length; i++) {
+        socket.on('ClubAPI', clubArray => {
+            for (let i = 0; i < clubArray.length; i++) {
 
-                if (roundArray[i].complete > 0 && roundArray[i].complete < 100) {
+                if (clubArray[i].complete > 0 && clubArray[i].complete < 100) {
                     teams[i].innerHTML= 
-                        ` <p> ${roundArray[i].hteam} ${roundArray[i].hgoals}.${roundArray[i].hbehinds} ${roundArray[i].hscore} </p>
-                        <p> ${roundArray[i].ateam} ${roundArray[i].agoals}.${roundArray[i].abehinds} ${roundArray[i].ascore} </p>`
+                        ` <p> ${clubArray[i].hteam} ${clubArray[i].hgoals}.${clubArray[i].hbehinds} ${clubArray[i].hscore} </p>
+                        <p> ${clubArray[i].ateam} ${clubArray[i].agoals}.${clubArray[i].abehinds} ${clubArray[i].ascore} </p>`
                     date[i].innerHTML = "LIVE NOW";
                     date[i].classList.add("live-score");
-                } else if (roundArray[i].complete ===100) {
+                } else if (clubArray[i].complete ===100) {
                     date[i].classList.remove("live-score");
-                    date[i].innerHTML = `${roundArray[i].day}`;
+                    date[i].innerHTML = `${clubArray[i].day}`;
                 }
             }
         });
