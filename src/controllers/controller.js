@@ -147,6 +147,10 @@ exports.roundLinks = function (req, res) {
   res.render('round_index', { title: 'Games by round'});
 };
 
+exports.clubLinks = function (req, res) {
+  res.render('club_index', { title: 'Games by club'});
+};
+
 exports.getRound1 = function (req, res) {
   const round = getRoundInfo(1);
   getLiveScores(1)
