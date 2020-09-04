@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const controllers = require('../controllers/controller');
+const controllers = require('../controllers/round_controller');
 
 router.get('/', controllers.index);
 router.get('/round_index', controllers.roundLinks);
