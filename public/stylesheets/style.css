@@ -26,8 +26,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    /* background-color: #333; */
-    background-color:#476e9e;
+    background-color: #333;
 }
 
 .round-dropdown {
@@ -173,6 +172,34 @@ margin: 2% 0;
 	top:1px;
 }
 
+.clubButton {
+    width: 48%;
+    margin-bottom: 4%;
+    font-size: 1em;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-weight:bold;
+	padding:10px 30px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+
+.clubButton:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.clubButton:active {
+	position:relative;
+	top:1px;
+}
+
 #footer {
     text-align: center;
     width: 95%;
@@ -224,6 +251,12 @@ margin: 2% 0;
         width: 22%;
         margin-bottom: 3%;
     }
+
+    .clubButton {
+        width: 30%;
+        font-size: 1.5em;
+        margin-bottom: 3%;
+    }
 }
 
   /*View for desktop*/
@@ -254,6 +287,11 @@ margin: 2% 0;
 
     .logo img {
         padding: 10% 0;
+    }
+
+    .clubButton {
+        width: 15%;
+        font-size: 1.3em;
     }
 
     #footer {
