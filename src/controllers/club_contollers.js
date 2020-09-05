@@ -3,7 +3,8 @@ const moment = require('moment');
 const tzMoment = require('moment-timezone');
 const { io } = require('../index');
 import "regenerator-runtime/runtime.js";
-// import { async } from "regenerator-runtime";
+import { homeLogo, awayLogo } from '../club_logo';
+
 let interval;
 let gamesArray;
 
@@ -21,11 +22,13 @@ const getClubInfo = function (club) {
     const clubArray = [];
     gamesArray.forEach( (element) => {
         if((element.hteam === club || element.ateam === club) && element.year === 2020) {
-            element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-            element.date = moment(element.date).local();
-            element.time = moment(element.date).format('h:mma');
-            element.day = moment(element.date).format('ddd MMM D');
-            clubArray.push(element);
+          element.hlogo = homeLogo(element.hteam);
+          element.alogo = awayLogo(element.ateam);
+          element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
+          element.date = moment(element.date).local();
+          element.time = moment(element.date).format('h:mma');
+          element.day = moment(element.date).format('ddd MMM D');
+          clubArray.push(element);
         }
     });
     return clubArray
