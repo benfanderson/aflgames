@@ -84,10 +84,17 @@ h2 {
 margin: 2% 0;
 }
 
-#player{
-    width: 100%;
+#index-button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    margin-top: 2%;
+
+}
+
+.button-img{
+    width: 70%;
     height: auto;
-    margin: 5% auto;
 }
 
 #scores{

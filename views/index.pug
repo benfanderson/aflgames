@@ -2,4 +2,10 @@ extends layout
 
 block layout-content
   div(id='root')
-    img( id='player' src='/images/player.png', alt="Football player silhouette")                
+    div(id='index-button-grid')
+      button(class='roundButton' onclick="document.location='/round_index'")
+        p Games by round
+        img(src='/images/football.svg', alt='Football silhouette', class='button-img')
+      button(class='roundButton' onclick="document.location='/club_index'")
+        p Games by club
+        img(src='/images/player.png', alt='Football player silhouette', class='button-img')
