@@ -149,9 +149,9 @@ margin: 2% 0;
 }
 
 .roundButton {
-    width: 30%;
+    width: 48%;
     margin-bottom: 4%;
-    font-size: 1.5em;
+    font-size: 1.3em;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color:#ffffff;
@@ -252,7 +252,8 @@ margin: 2% 0;
     }
 
     .roundButton {
-        width: 22%;
+        width: 30%;
+        font-size: 1.5em;
         margin-bottom: 3%;
     }
 
