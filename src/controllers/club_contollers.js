@@ -25,7 +25,7 @@ const getClubInfo = function (club) {
           element.hlogo = homeLogo(element.hteam);
           element.alogo = awayLogo(element.ateam);
           element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-          element.date = moment(element.date).local();
+          element.date = element.date.local();
           element.time = moment(element.date).format('h:mma');
           element.day = moment(element.date).format('ddd MMM D');
           clubArray.push(element);
