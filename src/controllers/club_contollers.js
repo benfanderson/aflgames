@@ -25,7 +25,7 @@ const getClubInfo = function (club) {
         element.hlogo = homeLogo(element.hteam);
         element.alogo = awayLogo(element.ateam);
         element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-        element.date = moment.utc(element.date).local();
+        // element.date = moment.utc(element.date).local();
         element.time = moment(element.date).format('h:mma');
         element.day = moment(element.date).format('ddd MMM D');
         clubArray.push(element);
@@ -43,7 +43,7 @@ const emitLiveScores = async (socket, club) => {
         gamesArray.forEach((element) => {
           if ( (element.hteam === club || element.ateam === club) && element.year === 2020) {
             element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-            element.date = moment.utc(element.date).local();
+            // element.date = moment.utc(element.date).local();
             element.time = moment(element.date).format('h:mma');
             element.day = moment(element.date).format('ddd MMM D');
             clubArray.push(element);
