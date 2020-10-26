@@ -1,4 +1,7 @@
 const axios = require('axios');
+const moment = require('moment');
+const tzMoment = require('moment-timezone');
+import { homeLogo, awayLogo } from './club_logo';
 
 async function makeGetRequest(url) {
     try {
@@ -9,23 +12,26 @@ async function makeGetRequest(url) {
     }
 }
 
-export async function createGamesArray(gameParam, gameProp1, gameProp2) {
+export async function createGamesArray(gameParam, gameProp, socket = undefined) {
   try {
-    const games = await makeGetRequest('https://api.squiggle.com.au/?q=games;year=2020;round=1');
-    const roundArray = [];
+    const games = await makeGetRequest('https://api.squiggle.com.au/?q=games;year=2020');
+    const gamesArray = [];
     games.forEach( element => {
-      if (element[gameProp1] === gameParam || element[gameProp2] === gameParam) {
+      if (element[gameProp[0]] === gameParam || element[gameProp[1]] === gameParam) {
         element.hlogo = homeLogo(element.hteam);
-      element.alogo = awayLogo(element.ateam);
-      element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
-      element.date = moment(element.date).local();
-      element.time = moment(element.date).format('h:mma');
-      element.day = moment(element.date).format('ddd MMM D');
-      roundArray.push(element);
-      console.log(roundArray);
+        element.alogo = awayLogo(element.ateam);
+        element.date = tzMoment.tz(element.date, 'Australia/Melbourne');
+        element.date = moment(element.date).local();
+        element.time = moment(element.date).format('h:mma');
+        element.day = moment(element.date).format('ddd MMM D');
+        gamesArray.push(element);
       }
     });
-    return roundArray;
+    if (socket) {
+      socket.emit('RoundAPI', gamesArray)
+    } else {
+      return gamesArray;
+    }
   } catch (error) {
     console.error(`Error: ${error.code}`);
   }
