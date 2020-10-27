@@ -44,7 +44,7 @@ block layout-content
         const date = document.getElementsByClassName('date-time');
         const socket = io();
 
-        socket.on('ClubAPI', clubArray => {
+        socket.on('RoundAPI', clubArray => {
             for (let i = 0; i < clubArray.length; i++) {
 
                 if (clubArray[i].complete > 0 && clubArray[i].complete < 100) {

@@ -1,184 +1,256 @@
-const got = require('got');
-const moment = require('moment');
-const tzMoment = require('moment-timezone');
 const { io } = require('../index');
 import "regenerator-runtime/runtime.js";
-import { homeLogo, awayLogo } from '../club_logo';
-
+import { createGamesArray } from '../api_call';
 let interval;
-let gamesArray;
 
-(async() => {
-  try {
-    const response = await got('https://api.squiggle.com.au/?q=games');
-    const parsed = JSON.parse(response.body);
-    gamesArray = parsed.games;
-  } catch (error) {
-    console.error(`Error: ${error.code}`);
-  }
-})()
-
-const getClubInfo = function (club) {
-    const clubArray = [];
-    gamesArray.forEach( (element) => {
-      if((element.hteam === club || element.ateam === club) && element.year === 2020) {
-        element.hlogo = homeLogo(element.hteam);
-        element.alogo = awayLogo(element.ateam);
-        element.date = tzMoment.tz(element.date, 'Australia/Melbourne').toDate();
-        element.date = new Date(element.date);
-        console.log(element.date);
-        element.time = moment(element.date).format('h:mma');
-        element.day = moment(element.date).format('ddd MMM D');
-        clubArray.push(element);
-      }
-    });
-    return clubArray
-};
-
-const emitLiveScores = async (socket, club) => {
-    try {
-        const response = await got('https://api.squiggle.com.au/?q=games')
-        const parsed = JSON.parse(response.body);
-        const gamesArray = parsed.games;
-        const clubArray = [];
-        gamesArray.forEach((element) => {
-          if ( (element.hteam === club || element.ateam === club) && element.year === 2020) {
-            element.date = tzMoment.tz(element.date, 'Australia/Melbourne').toDate();
-            element.date = new Date(element.date);
-            element.time = moment(element.date).format('h:mma');
-            element.day = moment(element.date).format('ddd MMM D');
-            clubArray.push(element);
-          }
-        });
-        socket.emit('ClubAPI', clubArray);
-    } catch (error) {
-        console.error(`Error: ${error.code}`);  
-    }
-};
-
-const getLiveScores= function (club) {
+  function fetchLiveScores (club) {
     io.on('connect', (socket) => {
       if (interval) {
         clearInterval(interval);
       }
-      interval = setInterval(() => emitLiveScores(socket, club), 3000);
+      interval = setInterval(async () => await createGamesArray(club, ['hteam', 'ateam'], socket) , 3000);
     });
-  };
+  }
 
   exports.clubLinks = function (req, res) {
     res.render('club_index', { title: 'Games by club'});
   };
   
   exports.adelaide = function (req, res) {
-    const club = getClubInfo('Adelaide');
-    getLiveScores('Adelaide')
-    res.render('club_detail', { title: 'Adelaide', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('Adelaide', ['hteam','ateam']);
+        fetchLiveScores('Adelaide')
+        res.render('club_detail', { title: 'Adelaide', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
   exports.brisbane = function (req, res) {
-    const club = getClubInfo('Brisbane Lions');
-    getLiveScores('Brisbane Lions')
-    res.render('club_detail', { title: 'Brisbane', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Brisbane Lions', ['hteam', 'ateam']);
+        fetchLiveScores('Brisbane Lions')
+      res.render('club_detail', { title: 'Brisbane', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.carlton = function (req, res) {
-    const club = getClubInfo('Carlton');
-    getLiveScores('Carlton')
-    res.render('club_detail', { title: 'Carlton', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Carlton', ['hteam', 'ateam']);
+        fetchLiveScores('Carlton')
+      res.render('club_detail', { title: 'Carlton', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.collingwood = function (req, res) {
-    const club = getClubInfo('Collingwood');
-    getLiveScores('Collingwood')
-    res.render('club_detail', { title: 'Collingwood', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Collingwood', ['hteam', 'ateam']);
+        fetchLiveScores('Collingwood')
+      res.render('club_detail', { title: 'Collingwood', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.essendon = function (req, res) {
-    const club = getClubInfo('Essendon');
-    getLiveScores('Essendon')
-    res.render('club_detail', { title: 'Essendon', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Essendon', ['hteam', 'ateam']);
+        fetchLiveScores('Essendon')
+      res.render('club_detail', { title: 'Essendon', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.fremantle = function (req, res) {
-    const club = getClubInfo('Fremantle');
-    getLiveScores('Fremantle')
-    res.render('club_detail', { title: 'Fremantle', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Fremantle', ['hteam', 'ateam']);
+        fetchLiveScores('Fremantle')
+      res.render('club_detail', { title: 'Fremantle', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.geelong = function (req, res) {
-    const club = getClubInfo('Geelong');
-    getLiveScores('Geelong')
-    res.render('club_detail', { title: 'Geelong', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Geelong', ['hteam', 'ateam']);
+        fetchLiveScores('Geelong')
+      res.render('club_detail', { title: 'Geelong', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.goldcoast = function (req, res) {
-    const club = getClubInfo('Gold Coast');
-    getLiveScores('Gold Coast')
-    res.render('club_detail', { title: 'Gold Coast', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Gold Coast', ['hteam', 'ateam']);
+        fetchLiveScores('Gold Coast')
+      res.render('club_detail', { title: 'Gold Coast', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.gws = function (req, res) {
-    const club = getClubInfo('Greater Western Sydney');
-    getLiveScores('Greater Western Sydney')
-    res.render('club_detail', { title: 'Greater Western Sydney', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Greater Western Sydney', ['hteam', 'ateam']);
+        fetchLiveScores('Greater Western Sydney')
+      res.render('club_detail', { title: 'Greater Western Sydney', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.hawthorn = function (req, res) {
-    const club = getClubInfo('Hawthorn');
-    getLiveScores('Hawthorn')
-    res.render('club_detail', { title: 'Hawthorn', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Hawthorn', ['hteam', 'ateam']);
+        fetchLiveScores('Hawthorn')
+      res.render('club_detail', { title: 'Hawthorn', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.melbourne = function (req, res) {
-    const club = getClubInfo('Melbourne');
-    getLiveScores('Melbourne')
-    res.render('club_detail', { title: 'Melbourne', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('Melbourne', ['hteam', 'ateam']);
+        fetchLiveScores('Melbourne')
+      res.render('club_detail', { title: 'Melbourne', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
-
   exports.northmelbourne = function (req, res) {
-    const club = getClubInfo('North Melbourne');
-    getLiveScores('North Melbourne')
-    res.render('club_detail', { title: 'North Melbourne', club });
+    (async() => {
+      try {
+        const club = await createGamesArray('North Melbourne', ['hteam', 'ateam']);
+        fetchLiveScores('North Melbourne')
+      res.render('club_detail', { title: 'North Melbourne', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    }
+    )()
   };
 
   exports.portadelaide = function (req, res) {
-    const club = getClubInfo('Port Adelaide');
-    getLiveScores('Port Adelaide')
-    res.render('club_detail', { title: 'Port Adelaide', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('Port Adelaide', ['hteam','ateam']);
+        fetchLiveScores('Port Adelaide')
+        res.render('club_detail', { title: 'Port Adelaide', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
   exports.richmond = function (req, res) {
-    const club = getClubInfo('Richmond');
-    getLiveScores('Richmond')
-    res.render('club_detail', { title: 'Richmond', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('Richmond', ['hteam','ateam']);
+        fetchLiveScores('Richmond')
+        res.render('club_detail', { title: 'Richmond', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
+  };
+
+  exports.sydney = function (req, res) {
+    (async()=>{
+      try {
+        const club = await createGamesArray('Sydney', ['hteam','ateam']);
+        fetchLiveScores('Sydney')
+        res.render('club_detail', { title: 'Sydney', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
   exports.stkilda = function (req, res) {
-    const club = getClubInfo('St Kilda');
-    getLiveScores('St Kilda')
-    res.render('club_detail', { title: 'St Kilda', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('St Kilda', ['hteam','ateam']);
+        fetchLiveScores('St Kilda')
+        res.render('club_detail', { title: 'St Kilda', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
-  exports.sydney = function (req, res) {
-    const club = getClubInfo('Sydney');
-    getLiveScores('Sydney')
-    res.render('club_detail', { title: 'Sydney', club });
-  };
-
-  exports.sydney = function (req, res) {
-    const club = getClubInfo('Sydney');
-    getLiveScores('Sydney')
-    res.render('club_detail', { title: 'Sydney', club });
+  exports.stkilda = function (req, res) {
+    (async()=>{
+      try {
+        const club = await createGamesArray('St Kilda', ['hteam','ateam']);
+        fetchLiveScores('St Kilda')
+        res.render('club_detail', { title: 'St Kilda', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
   exports.westcoast = function (req, res) {
-    const club = getClubInfo('West Coast');
-    getLiveScores('West Coast')
-    res.render('club_detail', { title: 'West Coast', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('West Coast', ['hteam','ateam']);
+        fetchLiveScores('West Coast')
+        res.render('club_detail', { title: 'West Coast', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
 
   exports.westernbulldogs = function (req, res) {
-    const club = getClubInfo('Western Bulldogs');
-    getLiveScores('Western Bulldogs')
-    res.render('club_detail', { title: 'Western Bulldogs', club });
+    (async()=>{
+      try {
+        const club = await createGamesArray('Western Bulldogs', ['hteam','ateam']);
+        fetchLiveScores('Western Bulldogs')
+        res.render('club_detail', { title: 'Western Bulldogs', club });
+      } catch (error) {
+        console.error(`Error: ${error.code}`);
+      }
+    })()
   };
+  
