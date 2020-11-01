@@ -1,7 +1,9 @@
 const axios = require('axios');
 const moment = require('moment');
 const tzMoment = require('moment-timezone');
+const { io } = require('./index');
 import { homeLogo, awayLogo } from './club_logo';
+let interval;
 
 async function makeGetRequest(url) {
     try {
@@ -28,7 +30,7 @@ export async function createGamesArray(gameParam, gameProp, socket = undefined) 
       }
     });
     if (socket) {
-      socket.emit('RoundAPI', gamesArray)
+      socket.emit('gamesAPI', gamesArray)
     } else {
       return gamesArray;
     }
@@ -36,3 +38,19 @@ export async function createGamesArray(gameParam, gameProp, socket = undefined) 
     console.error(`Error: ${error.code}`);
   }
 }
+
+
+export function fetchLiveScores (gameParam, gameProp) {
+  try {
+    io.on('connect', (socket) => {
+      if (interval) {
+        clearInterval(interval);
+      }
+      interval = setInterval(async () => await createGamesArray(gameParam, gameProp, socket) , 3000);
+    });
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
+  
+}
+
