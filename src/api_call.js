@@ -14,7 +14,7 @@ async function makeGetRequest(url) {
     }
 }
 
-export async function createGamesArray(gameParam, gameProp, socket = undefined) {
+async function createGamesArray(gameParam, gameProp, socket = undefined) {
   try {
     const games = await makeGetRequest('https://api.squiggle.com.au/?q=games;year=2020');
     const gamesArray = [];
@@ -39,8 +39,7 @@ export async function createGamesArray(gameParam, gameProp, socket = undefined) 
   }
 }
 
-
-export function fetchLiveScores (gameParam, gameProp) {
+function fetchLiveScores (gameParam, gameProp) {
   try {
     io.on('connect', (socket) => {
       if (interval) {
@@ -51,6 +50,18 @@ export function fetchLiveScores (gameParam, gameProp) {
   } catch (error) {
     console.error(`Error: ${error.code}`);
   }
-  
 }
 
+export async function createController(gamesParam, gamesProp, res) {
+  try {
+    const gamesArray = await createGamesArray(gamesParam, gamesProp);
+    fetchLiveScores(gamesParam, gamesProp)
+    if (typeof(gamesParam) === 'string') {
+      res.render('games_detail', { title: gamesParam, gamesArray });
+    } else {
+      res.render('games_detail', { title: `Round ${gamesParam}`, gamesArray });
+    }
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
+}

@@ -12,7 +12,7 @@ This app uses the following open source packages:
 
   * [Socket.io](https://socket.io/)
 
-  * [Got](https://www.npmjs.com/package/got)
+  * [Axios](https://www.npmjs.com/package/axios)
 
   * [Moment](https://momentjs.com/)
 

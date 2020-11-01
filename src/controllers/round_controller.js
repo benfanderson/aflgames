@@ -1,15 +1,5 @@
 import "regenerator-runtime/runtime.js";
-import { createGamesArray, fetchLiveScores } from '../api_call';
-
-async function createController(gamesParam, gamesProp, res) {
-  try {
-    const gamesArray = await createGamesArray(gamesParam, gamesProp);
-    fetchLiveScores(gamesParam, gamesProp)
-    res.render('games_detail', { title: `Round ${gamesParam}`, gamesArray });
-  } catch (error) {
-    console.error(`Error: ${error.code}`);
-  }
-}
+import { createController } from '../api_call';
 
 exports.index = function (req, res) {
   res.render('index', { title: 'Season 2020' });
